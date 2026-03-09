@@ -1,5 +1,5 @@
 from storage import load_expenses, save_expenses
-from logic import sum_total
+from logic import sum_total, filter_by_month, sum_by_category, get_available_months
 from datetime import date, datetime
 
 CATEGORIES = ["Ēdiens", "Transports", "Izklaide", "Komunālie maksājumi", "Veselība", "Iepirkšanās", "Cits"]
@@ -129,15 +129,7 @@ def list_expenses(expenses):
 
     for exp in expenses:
         description = truncate(exp["description"])
-        print(
-            f"{exp['date']:<{DATE_W}}"
-            f"{COL_SPACING}"
-            f"{exp['amount']:>{AMOUNT_W}.2f} EUR" #Python f-string formatēšana. 8 apzīmē simbolu platuma minimumu un 2 nozīmē divi skaitļi pēc komata (kā tiek apzīmētas cenas dzīvajā).
-            f"{COL_SPACING}"
-            f"{exp['category']:<{CATEGORY_W}}" #20 apzīmē simbolu platumu
-            f"{COL_SPACING}"
-            f"{description:<{DESC_W}}"
-        )
+        print(f"{exp['date']:<{DATE_W}} | {exp['amount']:>{AMOUNT_W}.2f} EUR | {exp['category']:<{CATEGORY_W}} | {description:<{DESC_W}}")
 
     total = sum_total(expenses)
 
