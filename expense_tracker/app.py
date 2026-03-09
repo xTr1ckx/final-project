@@ -166,7 +166,7 @@ def category_summary(expenses):
     totals = sum_by_category(expenses)
 
     if not totals:
-        print("\nNav ierakstītu izdevumu.")
+        print("\nNav ierakstītu izdevumu.") 
         return
     
     print("\nKopsavilkums pa kategorijām:\n")
@@ -174,8 +174,62 @@ def category_summary(expenses):
     for category, total in totals.items():
         print(f"{category}: {total:.2f} EUR")
 
+def edit_expense(expenses):
+    """Rediģēt pastāvošo izdevumu."""
+
+    if not expenses:
+        print("\nNav ierakstu ko rediģēt.")
+        return
+    
+    print("\nIzdevumi:\n")
+
+    for i, exp in enumerate(sorted(expenses, key=lambda x: x["date"]), start=1):
+        print(f"{i}) {exp['date']} | {exp['amount']:.2f} EUR | {exp['category']} | {exp['description']}")
+
+    choice = input("\nKuru ierakstu vēlaties rediģēt? (Lai atceltu darbību, ierakstiet 0): ")
+
+    try:
+        index = int(choice)
+
+        if index == 0:
+            return
+        
+        expense = expenses[index - 1]
+
+    except:
+        print("Nepareiza izvēle.")
+        return
+
+    print("\nKo vēlaties rediģēt?")
+    print("1) Datums")
+    print("2) Summa")
+    print("3) Kategorija")
+    print("4) Apraksts")
+
+    field_choice = input("Izvēle: ")
+
+    if field_choice == "1":
+        expense["date"] = input_date()
+
+    elif field_choice == "2":
+        expense["amount"] = input_amount()
+
+    elif field_choice == "3":
+        expense["category"] = choose_category()
+
+    elif field_choice == "4":
+        expense["description"] = input("Jauns apraksts: ")
+
+    else:
+        print("Nepareiza izvēle. Izvēlaties no 1-4.")
+        return
+
+    save_expenses(expenses)
+
+    print("\n✓ Izdevums veiksmīgi atjaunināts.")  
+
 def delete_expense(expenses):
-    """Izdēst izdevumu"""
+    """Izdēst izdevumu."""
     if not expenses:
         print("\nNav ierakstu ko dzēst.")
         return
@@ -222,7 +276,8 @@ def main():
         elif choice == "4":
             category_summary(expenses)
 
-        #elif choice == "5":
+        elif choice == "5":
+            edit_expense(expenses)
 
         elif choice == "6":
             delete_expense(expenses)
