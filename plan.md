@@ -6,7 +6,7 @@ A. Programmas apraksts
 B. Datu struktūra
 	Datums, laiks, summa, kategorija, apraksts
 
- 	Piemērs: 06.03.2026. | 12:23 | 0,90€ | Ēdiens | Jūras kāposti brokastīm
+ 	Piemērs: 2026.06.03 | 0,90€ | Ēdiens | Jūras kāposti brokastīm
 
 	Šāda struktūra tika izvēlēta, jo līdzīga struktūra bija piedāvāta projekta apraksta failā, kura likās visai sakarīga. Kaut arī pašam būtu vēlme aprakstu izvadīt kā pirmo lietu ko lietotājs redz, pats saprotu, ka tas bojātu 	caurskatāmību visai struktūrai, par cik teksts var būt dažāda garuma, kas nozīmē, ka katrs jauns ieraksts "bīdītu" apkārt visus pārējos datus kas iet pēc apraksta.
 
